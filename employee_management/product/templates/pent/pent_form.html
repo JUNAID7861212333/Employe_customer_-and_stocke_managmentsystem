@@ -1,0 +1,12 @@
+<!-- pents/pent_form.html -->
+
+{% extends 'base_form.html' %}
+{% block content %}
+    <h2> pent</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="{% url 'pant_list' %}" class="btn btn-secondary mt-2">Cancel</a>
+{% endblock %}

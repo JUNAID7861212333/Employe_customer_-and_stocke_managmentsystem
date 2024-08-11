@@ -1,0 +1,12 @@
+<!-- t_shirts/t_shirt_form.html -->
+
+{% extends 'base_form.html' %}
+{% block content %}
+    <h2>T_shirt</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <a href="{% url 'tshirt_list' %}" class="btn btn-secondary mt-2">Cancel</a>
+{% endblock %}

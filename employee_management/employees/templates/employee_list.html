@@ -1,0 +1,159 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        img {
+            border-radius: 50%;
+        }
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+        .action-links a, .action-links button {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #28a745;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-links button {
+            background-color: #dc3545;
+        }
+        .action-links a:hover {
+            background-color: #218838;
+        }
+        .action-links button:hover {
+            background-color: #c82333;
+        }
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Data</h1>
+    <div class="button-container">
+        <a href="{% url 'employee_create' %}">Add New Employee</a>
+        <a href="{% url 'attendance_entry' %}">Attendance Entry of Employee</a>
+        <a href="{% url 'show_attendance' %}">Show Attendance Employee</a>
+        <a href="{% url 'select_month_year' %}">Select Month/Year for Salary</a>
+        <a href="{% url 'stocksale_list' %}">stocksale/Products</a>
+        
+        
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Full Name</th>
+                <th>Age</th>
+                <th>Blood Group</th>
+                <th>Designation</th>
+                <th>Phone Number</th>
+                <th>Photo</th>
+                <th>Salary</th>
+                <th>Joining Date</th>
+                <th>Department</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Date of Birth</th>
+                <th>Description</th>
+                <th>WhatsApp</th>
+                <th>SMS</th>
+                <th>ID Card</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td>{{ employee.name }}</td>
+                <td>{{ employee.fullname }}</td>
+                <td>{{ employee.age }}</td>
+                <td>{{ employee.blood_group }}</td>
+                <td>{{ employee.designation }}</td>
+                <td>{{ employee.phone_number }}</td>
+                <td><img src="{{ employee.photo.url }}" alt="{{ employee.name }}" width="50" height="50"></td>
+                <td>{{ employee.salary }}</td>
+                <td>{{ employee.joining_date }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.gender }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.date_of_birth }}</td>
+                <td>{{ employee.description }}</td>
+                <td>{{ employee.whatsapp }}</td>
+                <td>{{ employee.sms }}</td>
+                <td>{{ employee.idcard }}</td>
+                <td class="action-links">
+                    <a href="{% url 'employee_update' employee.id %}">Update</a>
+                    <form action="{% url 'employee_delete' employee.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    
+</body>
+</html>

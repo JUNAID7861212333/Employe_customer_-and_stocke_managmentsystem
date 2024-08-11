@@ -1,0 +1,71 @@
+<!-- t_shirts/t_shirt_list.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>t_shirts</h2>
+    <a href="{% url 'tshirt_create' %}" class="btn btn-primary mb-3">Add New t_shirt</a>
+    <table class="table table-striped" id="t_shirt">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Brand Name</th>
+                <th>Color</th>
+                <th>Fabric Type</th>
+                <th>Size</th>
+                <th>Quantity</th>
+                <th>Total Pice Quantity</th>
+                <th>Manufacturing Price</th>
+                <th>Sale Price</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t_shirt in t_shirts %}
+                <tr>
+                    <td>{{ t_shirt.id }}</td>
+                    <td>{{ t_shirt.code }}</td>
+                    <td>{{ t_shirt.brand_name }}</td>
+                    <td>{{ t_shirt.color }}</td>
+                    <td>{{ t_shirt.fabric_type.name }}</td>
+                    <td>{{ t_shirt.size }}</td>
+                    <td>{{ t_shirt.quantity }}</td>
+                    <td>{{ t_shirt.total_pice_quantity }}</td>
+                    <td>{{ t_shirt.manafacturing_price }}</td>
+                    <td>{{ t_shirt.sale_price }}</td>
+                    <td>{{ t_shirt.total_price }}</td>
+                    <td>
+                        <a href="{% url 'tshirt_detail' t_shirt.pk %}" class="btn btn-info btn-sm">Detail</a>
+                        <a href="{% url 'tshirt_update' t_shirt.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{% url 'tshirt_delete' t_shirt.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block js %}
+<link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/af-2.7.0/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/sl-2.0.3/sr-1.4.1/datatables.min.css" rel="stylesheet">
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/af-2.7.0/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/sl-2.0.3/sr-1.4.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#t_shirt').DataTable({
+            dom: '<"d-flex justify-content-between align-items-center mb-3"fB>rtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf'
+            ]
+        });
+
+        // Add Bootstrap classes to DataTables elements
+        $('.dataTables_filter').addClass('form-inline');
+        $('.dataTables_filter label').addClass('mr-2');
+        $('.dataTables_filter input').addClass('form-control ml-2');
+        $('.dt-buttons').addClass('btn-group');
+        $('.dt-button').addClass('btn btn-secondary');
+    });
+</script>
+{% endblock js %}

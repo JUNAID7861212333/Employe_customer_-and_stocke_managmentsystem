@@ -1,0 +1,12 @@
+<!-- shortss/shorts_confirm_delete.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Delete shorts</h2>
+    <p>Are you sure you want to delete "{{ shorts }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'shorts_list' %}" class="btn btn-secondary ml-2">Cancel</a>
+    </form>
+{% endblock %}

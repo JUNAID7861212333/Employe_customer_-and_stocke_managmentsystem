@@ -1,0 +1,49 @@
+<!-- shirts/shirt_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>shirt Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Code</th>
+            <td>{{ shirt.code }}</td>
+        </tr>
+        <tr>
+            <th>Brand Name </th>
+            <td>{{ shirt.brand_name }}</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>{{ shirt.color }}</td>
+        </tr>
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ shirt.fabric_type.name }}</td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ shirt.size }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ shirt.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ shirt.total_pice_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Price</th>
+            <td>{{ shirt.manafacturing_price }}</td>
+        </tr>
+        <tr>
+            <th>Sale Price</th>
+            <td>{{ shirt.sale_price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>{{ shirt.total_price }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'shirt_list' %}" class="btn btn-primary">Back to shirt List</a>
+{% endblock %}

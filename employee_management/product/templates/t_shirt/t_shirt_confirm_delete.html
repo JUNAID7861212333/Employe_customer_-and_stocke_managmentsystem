@@ -1,0 +1,12 @@
+<!-- t_shirts/t_shirt_confirm_delete.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Delete t_shirt</h2>
+    <p>Are you sure you want to delete "{{ t_shirt }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'tshirt_list' %}" class="btn btn-secondary ml-2">Cancel</a>
+    </form>
+{% endblock %}

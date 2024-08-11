@@ -1,0 +1,13 @@
+
+<!-- trousers/trouser_form.html -->
+
+{% extends 'base_form.html' %}
+{% block content %}
+    <h2>Trouser</h2>
+    <form method="post" class="mb-3 row">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary mb-3 row">Save</button>
+    </form>
+    {% comment %} <button href="{% url 'trouser_list' %}" class="btn btn-secondary ">Cancel</button> {% endcomment %}
+{% endblock %}

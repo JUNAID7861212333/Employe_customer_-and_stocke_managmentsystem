@@ -1,0 +1,19 @@
+
+{% extends "base_form.html" %}
+{% block title %}
+Employee Form
+{% endblock %}
+
+{% block content %}
+   
+
+
+        <h1>{{ form.instance.id|yesno:"Update,Create" }} Employee</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{{ form.instance.id|yesno:"Update,Create" }}</button>
+        </form>
+    
+
+{% endblock  %}

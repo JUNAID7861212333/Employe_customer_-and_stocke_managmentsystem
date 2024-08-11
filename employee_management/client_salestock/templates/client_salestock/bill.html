@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        .header, .bill-to {
+            background-color: #f7941d;
+            color: white;
+        }
+        .header .company-info h1 {
+            margin: 0;
+        }
+        .header .company-info p {
+            margin: 0;
+        }
+        .table th {
+            background-color: #f7941d;
+            color: white;
+        }
+        .amounts th {
+            text-align: left;
+        }
+        .amounts td {
+            text-align: right;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+        }
+        hr {
+            border-top: 1px solid #ddd;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="">
+    <div class="header row p-3">
+        <div class="col-md-2">
+            {% load static %}
+            <img src="{% static 'download(1).png' %}" alt="Logo" class="img-fluid">
+        </div>
+        <div class="col-md-10 company-info">
+            <h1>Fine Stitch Apparel</h1>
+            <p>Ashiyana Road Iqbal Chowk Defence Garden Lahore<br>
+            Phone no.: 03054764722 Email: hassanbilalcheemafsa@gmail.com</p>
+        </div>
+    </div>
+
+    <div class="content my-4">
+        <div class="invoice-info text-end">
+            <p><strong>Invoice No.: {% if client_ids %} {{ client_ids|join:", " }} {% else %} None {% endif %}</strong></p>
+            <p>Date:{{ current_date }}<br>
+            Time: {{ current_time }}</p>
+        </div>
+
+        <div class="bill-to p-3 mb-4">
+            <strong>Bill To:</strong><br>
+            Hassan Bilal Cheema
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Item name</th>
+                    <th>Quantity</th>
+                    <th>Payment Method</th>
+                    <th>Total Order Count</th>
+                    <th>Discount Percentage</th>
+                    <th>Ater Discount</th>
+                    <th>Amount</th>
+                    <th>Received</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% comment %} <tr>
+                    <td>1</td>
+                    <td>341</td>
+                    <td>45</td>
+                    <td>Pant</td>
+                    <td>Rs 895.00</td>
+                    <td>Rs 40,275.00</td>
+                </tr> {% endcomment %}
+
+                {% for employee in employees %}
+            <tr>
+                
+                           
+                <td>{{ employee.client.name }}</td>
+                <td>{{ employee.product_name }}</td>
+                <td>{{ employee.product_quantity }}</td>
+                <td>{{ employee.product_price }}</td>
+                <td>{{ employee.payment_method }}</td>
+                <td>{{ employee.total_order_count }}</td>
+                <td>{{ employee.discount_percentage }}</td>
+                <td>{{ employee.after_discount }}</td>
+                <td>{{ employee.client_payed }}</td> 
+               
+                
+            </tr>
+            {% endfor %}
+
+
+
+                <tr>
+                    <td colspan="5" class="text-end"><strong>Total</strong></td>
+                    <td><strong>Rs{{ total_after_discount }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+
+        <div class="row">
+            <div class="col-md-6 terms p-16">
+                <p><strong>Invoice Amount In Words:</strong><br>
+                    RS{{total_after_discount_words}}only</p>
+                <p><strong>Terms and conditions:</strong><br>
+                Thank you for doing business with us.</p>
+            </div>
+
+            <div class="col-md-6 amounts">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Amounts:</th>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                            <th>Total</th>
+                            <td>RS{{total_after_discount }}</td>
+                        </tr>
+                       
+                        <tr>
+                            <th>Balance</th>
+                            <td>{% for balance in remaining_balances %}
+                                <li>RS{{ balance }}</li>
+                            {% empty %}
+                                <li>No remaining balances found.</li>
+                            {% endfor %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+        </div>
+
+       
+
+        <footer class="footer bg-dark text-white-50 py-4">
+            <div class="container text-center">
+                <small>Copyright &copy; Your Website</small>
+            </div>
+        </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFfF/ZNTz3M6Tjt0IecVdeDk/eBo4Jpv7E+6B6Y/mWPyZ6blpyPb72Mifi" crossorigin="anonymous"></script>
+</body>
+</html>

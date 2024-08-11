@@ -1,0 +1,90 @@
+<!-- pent/pant_list.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Pants</h2>
+    <a href="{% url 'pant_create' %}" class="btn btn-primary mb-3">Add New Pant</a>
+    <table class="table table-striped" id="pant">
+        <thead>
+            <tr>
+                <th>ID</th>
+                 <th>Brand Name</th>
+                 <th>Cutt No</th>
+                 <th>Wash</th>
+                 <th>Fabric Type</th>
+                 <th>Piece Style</th>
+                 <th>Wash Type</th>
+                 <th>Color</th>
+                 <th>Size</th>
+                 <th>Set Quantity </th>
+                 <th>Quantity </th>
+                 {% comment %} <th>piece quantity</th> {% endcomment %}
+                 <th>Total Pcs Quantity</th>
+                 <th>Manufacturing Price</th>
+                 <th>Sale Price</th>
+                 <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pant in pants %}
+                <tr>
+                    <td>{{ pant.id }}</td>
+                    <td>{{ pant.brand_name }}</td>
+                    <td>{{ pant.cutt_no }}</td>
+                    <td>{{ pant.wash }}</td>
+                    <td>{{ pant.fabric_type.name }}</td>
+                    <td>{{ pant.piece_style }}</td>
+                    <td>{{ pant.wash_type }}</td>
+                    <td>{{ pant.color }}</td>
+                    <td>{{ pant.size }}</td>
+                    <td>{{ pant.set_quantity }}</td>
+                    <td>{{ pant.quantity }}</td>
+                    <td>{{ pant.total_pcs_quantity }}</td>
+                    <td>{{ pant.manufacturing_price }}</td>
+                    <td>{{ pant.sale_price }}</td>
+                    <td>{{ pant.total_price }}</td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a href="{% url 'pant_detail' pant.pk %}" class="btn btn-info btn-sm table-btn">Detail</a>
+                            <a href="{% url 'pant_update' pant.pk %}" class="btn btn-warning btn-sm table-btn">Edit</a>
+                            <a href="{% url 'pant_delete' pant.pk %}" class="btn btn-danger btn-sm table-btn">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block js %}
+<link href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/af-2.7.0/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/sl-2.0.3/sr-1.4.1/datatables.min.css" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-2.0.8/af-2.7.0/b-3.0.2/b-colvis-3.0.2/b-html5-3.0.2/b-print-3.0.2/cr-2.0.3/date-1.5.2/fc-5.0.1/fh-4.0.1/kt-2.12.1/r-3.0.2/rg-1.5.0/rr-1.5.0/sc-2.4.3/sb-1.7.1/sp-2.3.1/sl-2.0.3/sr-1.4.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#pant').DataTable({
+            dom: '<"d-flex justify-content-between align-items-center mb-3"fB>rtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf'
+            ]
+        });
+
+        // Add Bootstrap classes to DataTables elements
+        $('.dataTables_filter').addClass('form-inline');
+        $('.dataTables_filter label').addClass('mr-2');
+        $('.dataTables_filter input').addClass('form-control ml-2');
+        $('.dt-buttons').addClass('btn-group');
+        $('.dt-button').addClass('btn btn-secondary');
+    });
+</script>
+<style>
+    .table-btn {
+        min-width: 80px; /* Adjust the width as needed */
+        justify: center;
+        margin-right: 5px; /* Space between buttons */
+    }
+</style>
+{% endblock js %}

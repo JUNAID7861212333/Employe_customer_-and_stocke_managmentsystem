@@ -1,0 +1,49 @@
+<!-- t_shirts/t_shirt_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>t_shirt Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Code</th>
+            <td>{{ t_shirt.fabric_type.name }}</td>
+        </tr>
+        <tr>
+            <th>Brand Name</th>
+            <td>{{ t_shirt.fabric_type.brand_name }}</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>{{ t_shirt.color }}</td>
+        </tr>
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ t_shirt.fabric_type.name }}</td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ t_shirt.size }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ t_shirt.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Total Pice Quantity</th>
+            <td>{{ t_shirt.total_pice_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Price</th>
+            <td>{{ t_shirt.manafacturing_price }}</td>
+        </tr>
+        <tr>
+            <th>Sale Price</th>
+            <td>{{ t_shirt.sale_price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>{{ t_shirt.total_price }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'tshirt_list' %}" class="btn btn-primary">Back to t_shirt List</a>
+{% endblock %}

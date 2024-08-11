@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Summary</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Monthly Summary</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Original Salary</th>
+                <th>Number of Absences</th>
+                <th>Number of Late Arrivals</th>
+                <th>Number of Presents</th>
+                <th>Number of Leaves</th>
+                <th>Deductions</th>
+                <th>Remaining Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.department }}</td>
+                <td>{{ item.original_salary }}</td>
+                <td>{{ item.absences }}</td>
+                <td>{{ item.late_arrivals }}</td>
+                <td>{{ item.presents }}</td>
+                <td>{{ item.leaves }}</td>
+                <td>{{ item.deductions }}</td>
+                <td>{{ item.remaining_salary }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

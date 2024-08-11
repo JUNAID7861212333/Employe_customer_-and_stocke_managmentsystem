@@ -1,0 +1,442 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Attendance</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>On Leave</th>
+                <th>Late</th>
+                <th>On Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.employee.name }}</td>
+                <td>{{ attendance.date }}</td>
+                <td>{% if attendance.present %}Yes{% else %}No{% endif %}</td>
+                <td>{% if attendance.absent %}Yes{% else %}No{% endif %}</td>
+                <td>{% if attendance.on_leave %}Yes{% else %}No{% endif %}</td>
+                <td>{% if attendance.late %}Yes{% else %}No{% endif %}</td>
+                <td>{% if attendance.on_time %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> {% endcomment %}
+
+
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007BFF; /* Changed background color to blue */
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #ddd;
+        }
+        table td {
+            text-align: center;
+        }
+        table td.yes {
+            color: green;
+            font-weight: bold;
+        }
+        table td.no {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Attendance</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>On Leave</th>
+                <th>Late</th>
+                <th>On Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.employee.name }}</td>
+                <td>{{ attendance.date }}</td>
+                <td class="{% if attendance.present %}yes{% else %}no{% endif %}">{% if attendance.present %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.absent %}yes{% else %}no{% endif %}">{% if attendance.absent %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_leave %}yes{% else %}no{% endif %}">{% if attendance.on_leave %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.late %}yes{% else %}no{% endif %}">{% if attendance.late %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_time %}yes{% else %}no{% endif %}">{% if attendance.on_time %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+ {% endcomment %}
+
+
+
+
+{% comment %} 
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007BFF; /* Changed background color to blue */
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #ddd;
+        }
+        table td {
+            text-align: center;
+        }
+        table td.yes {
+            color: green;
+            font-weight: bold;
+        }
+        table td.no {
+            color: red;
+            font-weight: bold;
+        }
+        .download-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .download-btn button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .download-btn button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">My Django App</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/product/categories/">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/jackets/">Jackets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/shirts/">Shirts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/pants/">Pants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/shorts/">Shorts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/tshirts/">T-shirts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/trousers/">Trousers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/client_salestock/clients/">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/client_salestock/stocksales/">Stock Sales</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <h1>Employee Attendance and Salary Summary</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>On Leave</th>
+                <th>Late</th>
+                <th>On Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.employee.name }}</td>
+                <td>{{ attendance.date }}</td>
+                <td class="{% if attendance.present %}yes{% else %}no{% endif %}">{% if attendance.present %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.absent %}yes{% else %}no{% endif %}">{% if attendance.absent %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_leave %}yes{% else %}no{% endif %}">{% if attendance.on_leave %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.late %}yes{% else %}no{% endif %}">{% if attendance.late %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_time %}yes{% else %}no{% endif %}">{% if attendance.on_time %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% comment %} <div class="download-btn">
+        <form action="{% url 'download_attendance_xls' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Download Attendance as XLS</button>
+        </form>
+    </div> {% endcomment %}
+
+
+    
+{% comment %} </body> {% endcomment %}
+{% comment %} </html>  {% endcomment %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007BFF; /* Changed background color to blue */
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        table tr:hover {
+            background-color: #ddd;
+        }
+        table td {
+            text-align: center;
+        }
+        table td.yes {
+            color: green;
+            font-weight: bold;
+        }
+        table td.no {
+            color: red;
+            font-weight: bold;
+        }
+        .download-btn {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .download-btn button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .download-btn button:hover {
+            background-color: #0056b3;
+        }
+        /* Navbar styles */
+        .navbar {
+            background-color: #007BFF;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+        .navbar .navbar-brand {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .navbar .navbar-nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .navbar .navbar-nav li {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a class="navbar-brand" href="/">Employee Data</a>
+            <ul class="navbar-nav">
+                <li><a href="/product/categories/">Categories</a></li>
+                <li><a href="/product/jackets/">Jackets</a></li>
+                <li><a href="/product/shirts/">Shirts</a></li>
+                <li><a href="/product/pants/">Pants</a></li>
+                <li><a href="/product/shorts/">Shorts</a></li>
+                <li><a href="/product/tshirts/">T-shirts</a></li>
+                <li><a href="/product/trousers/">Trousers</a></li>
+                <li><a href="/client_salestock/clients/">Clients</a></li>
+                <li><a href="/client_salestock/stocksales/">Stock Sales</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h1>Employee Attendance and Salary Summary</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>On Leave</th>
+                <th>Late</th>
+                <th>On Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.employee.name }}</td>
+                <td>{{ attendance.date }}</td>
+                <td class="{% if attendance.present %}yes{% else %}no{% endif %}">{% if attendance.present %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.absent %}yes{% else %}no{% endif %}">{% if attendance.absent %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_leave %}yes{% else %}no{% endif %}">{% if attendance.on_leave %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.late %}yes{% else %}no{% endif %}">{% if attendance.late %}Yes{% else %}No{% endif %}</td>
+                <td class="{% if attendance.on_time %}yes{% else %}no{% endif %}">{% if attendance.on_time %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% comment %} <div class="download-btn">
+        <form action="{% url 'download_attendance_xls' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Download Attendance as XLS</button>
+        </form>
+    </div> {% endcomment %}
+
+    
+</body>
+</html>

@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Attendance Details
+{% endblock %}
+
+{% block content %}
+    <h1>Attendance Details for {{ employee.name }} - {{ month }}/{{ year }}</h1>
+    <div class="attendance-container">
+        <table class="attendance-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                    <th>On Leave</th>
+                    <th>Late</th>
+                    <th>On Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attendance in attendances %}
+                <tr>
+                    <td>{{ attendance.date }}</td>
+                    <td>{{ attendance.present }}</td>
+                    <td>{{ attendance.absent }}</td>
+                    <td>{{ attendance.on_leave }}</td>
+                    <td>{{ attendance.late }}</td>
+                    <td>{{ attendance.on_time }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6">No attendance records available.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+    .attendance-container {
+        margin: 20px auto;
+        padding: 20px;
+        max-width: 800px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .attendance-container h1 {
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .attendance-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .attendance-table th,
+    .attendance-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+    .attendance-table th {
+        background-color: #f4f4f4;
+        color: #333;
+    }
+    .attendance-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    .attendance-table tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+{% endblock %}
+
+
+
+
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Details</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance Details for {{ employee.name }} - {{ month }}/{{ year }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Present</th>
+                <th>Absent</th>
+                <th>On Leave</th>
+                <th>Late</th>
+                <th>On Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.date }}</td>
+                <td>{{ attendance.present }}</td>
+                <td>{{ attendance.absent }}</td>
+                <td>{{ attendance.on_leave }}</td>
+                <td>{{ attendance.late }}</td>
+                <td>{{ attendance.on_time }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html> {% endcomment %}

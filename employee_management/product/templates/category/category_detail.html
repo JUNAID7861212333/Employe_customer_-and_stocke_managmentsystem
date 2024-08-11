@@ -1,0 +1,14 @@
+<!-- categorys/category_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>category Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ category.name }}</td>
+        </tr>
+        
+    </table>
+    <a href="{% url 'category_list' %}" class="btn btn-primary">Back to category List</a>
+{% endblock %}

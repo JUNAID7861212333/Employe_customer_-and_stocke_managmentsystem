@@ -1,0 +1,65 @@
+<!-- shortss/shorts_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>shorts Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Brand Name</th>
+            <td>{{ shorts.brand_name }}</td>
+        </tr>
+        <tr>
+            <th>Cutt No</th>
+            <td>{{ shorts.cutt_no }}</td>
+        </tr>
+        <tr>
+            <th>Wash</th>
+            <td>{{ shorts.wash }}</td>
+        </tr>
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ shorts.fabric_type.name }}</td>
+        </tr>
+        <tr>
+            <th>Piece Style</th>
+            <td>{{ shorts.piece_style }}</td>
+        </tr>
+        <tr>
+            <th> Wash Type</th>
+            <td>{{ shorts.wash_type }}</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>{{ shorts.color }}</td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ shorts.size }}</td>
+        </tr>
+        <tr>
+            <th> Set Quantity</th>
+            <td>{{ shorts.set_quantity }}</td>
+        </tr>
+        <tr>
+            <th> Quantity</th>
+            <td>{{ shorts.quantity }}</td>
+        </tr>
+        <tr>
+            <th> Total Pcs Quantity</th>
+            <td>{{ shorts.total_pcs_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Price</th>
+            <td>{{ shorts.manufacturing_price }}</td>
+        </tr>
+        <tr>
+            <th>Sale Price</th>
+            <td>{{ shorts.sale_price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>{{ shorts.total_price }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'shorts_list' %}" class="btn btn-primary">Back to shorts List</a>
+{% endblock %}

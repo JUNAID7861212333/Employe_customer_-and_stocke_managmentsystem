@@ -1,0 +1,49 @@
+<!-- jackets/jacket_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>jacket Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Code</th>
+            <td>{{ jacket.code }}</td>
+        </tr>
+        <tr>
+            <th>Brand_name</th>
+            <td>{{ jacket.brand_name }}</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>{{ jacket.color }}</td>
+        </tr>
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ jacket.fabric_type.name }}</td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ jacket.size }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ jacket.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Total Pice Quantity</th>
+            <td>{{ jacket.total_pice_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Price</th>
+            <td>{{ jacket.manafacturing_price }}</td>
+        </tr>
+        <tr>
+            <th>Sale Price</th>
+            <td>{{ jacket.sale_price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>{{ jacket.total_price }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'jacket_list' %}" class="btn btn-primary">Back to jacket List</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete: Stock Sale{% endblock %}
+
+{% block header %}Confirm Delete: Stock Sale{% endblock %}
+
+{% block content %}
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete this stock sale?</p>
+    <form action="{% url 'stocksale_delete' stocksale.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        <a href="{% url 'stocksale_detail' stocksale.id %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

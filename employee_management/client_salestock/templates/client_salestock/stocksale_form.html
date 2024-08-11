@@ -1,0 +1,37 @@
+{% extends 'base_form.html' %}
+
+{% block title %}Create Stock Sale{% endblock %}
+
+{% block header %}Create Stock Sale{% endblock %}
+
+{% block content %}
+    <h2>Create Stock Sale</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryField = document.querySelector('#id_product_name');
+            categoryField.addEventListener('change', function() {
+                const selectedCategory = categoryField.value;
+
+                fetch(`/get_products_by_category/?category_id=${selectedCategory}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const productField = document.querySelector('#id_product');
+                        productField.innerHTML = '';
+
+                        data.products.forEach(product => {
+                            const option = document.createElement('option');
+                            option.value = product.id;
+                            option.textContent = product.name;
+                            productField.appendChild(option);
+                        });
+                    });
+            });
+        });
+    </script>
+{% endblock %}

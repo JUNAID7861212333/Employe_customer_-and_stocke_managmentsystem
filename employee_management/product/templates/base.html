@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Django App{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Basic Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2879ff;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        main {
+            padding: 2rem 0;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            {% comment %} padding: 1rem 0; {% endcomment %}
+            text-align: center;
+        }
+        /* Form Styling */
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar {
+            background-color: #f4f4f4;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #2879ff;
+            border-bottom: 3px solid #2879ff;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            {% comment %} font-weight: bold; {% endcomment %}
+            padding: 20px;
+        }
+        .navbar-nav .nav-item .nav-link {
+            color: #2879ff;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            color: #0056b3;
+        }
+        .container {
+            margin-top: 18px;
+        }
+        
+        .dataTables_filter {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+        .dataTables_filter label {
+                margin-right: 10px;
+                display: flex;
+                align-items: center;
+            }
+        .dataTables_filter input {
+                margin-left: 10px;
+            }
+        
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">Employee Data</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/product/categories/">Categories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/jackets/">Jackets</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/shirts/">Shirts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/pants/">Pants</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/shorts/">Shorts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/tshirts/">T-shirts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/product/trousers/">Trousers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/client_salestock/clients/">Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/client_salestock/stocksales/">Stock Sales</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container mt-4">
+        <div class="row" style="margin-bottom: 100px;">
+            <div class="col">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+  
+    {% comment %} <footer class="fixed-bottom pt-12" style="margin-top: 20px;">
+        <p>&copy; All rights reserved.</p>
+    </footer> {% endcomment %}
+
+
+    <footer class="fixed-bottom pt-12" style="margin-top: 20px; width: 100%; padding: 10px 0; text-align: center;">
+        <p>&copy; All rights reserved.</p>
+    </footer>
+    
+    <!-- Optional: Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    {% block js %}{% endblock %}
+    {% block styles %}{% endblock styles %}
+</body>
+</html>

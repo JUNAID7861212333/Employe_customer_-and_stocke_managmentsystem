@@ -1,0 +1,61 @@
+<!-- pants/pant_detail.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>pant Detail</h2>
+    <table class="table">
+        <tr>
+            <th>Brand Name</th>
+            <td>{{ pant.brand_name }}</td>
+        </tr>
+        <tr>
+            <th>Cutt No </th>
+            <td>{{ pant.cutt_no }}</td>
+        </tr>
+        <tr>
+            <th>Wash</th>
+            <td>{{ pant.wash }}</td>
+        </tr>
+        <tr>
+            <th>Fabric Type</th>
+            <td>{{ pant.fabric_type }}</td>
+        </tr>
+        <tr>
+            <th>Piece Style</th>
+            <td>{{ pant.piece_style }}</td>
+        </tr>
+        <tr>
+            <th>Wash Type</th>
+            <td>{{ pant.wash_type }}</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>{{ pant.color }}</td>
+        </tr>
+        <tr>
+            <th>Size</th>
+            <td>{{ pant.size }}</td>
+        </tr>
+        <tr>
+            <th>Set Quantity</th>
+            <td>{{ pant.set_quantity }}</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>{{ pant.quantity }}</td>
+        </tr>
+        <tr>
+            <th>Manufacturing Price</th>
+            <td>{{ pant.manufacturing_price }}</td>
+        </tr>
+        <tr>
+            <th>Sale Price</th>
+            <td>{{ pant.sale_price }}</td>
+        </tr>
+        <tr>
+            <th>Total Price</th>
+            <td>{{ pant.total_price }}</td>
+        </tr>
+    </table>
+    <a href="{% url 'pant_list' %}" class="btn btn-primary">Back to pant List</a>
+{% endblock %}

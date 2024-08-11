@@ -1,0 +1,12 @@
+<!-- categorys/category_confirm_delete.html -->
+
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Delete category</h2>
+    <p>Are you sure you want to delete "{{ category }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm Delete</button>
+        <a href="{% url 'category_list' %}" class="btn btn-secondary ml-2">Cancel</a>
+    </form>
+{% endblock %}
